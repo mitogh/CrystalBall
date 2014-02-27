@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.example.crystalball.ShakeDetector.OnShakeListener;
 
 public class MainActivity extends Activity {
-	private CrystallBall mBall = new CrystallBall();
+	private CrystallBall mBall;
 	private TextView mAnswerLabel;
 	private ImageView mBackground;
 	private SensorManager mSensorManager;
@@ -31,7 +31,8 @@ public class MainActivity extends Activity {
         mAnswerLabel = (TextView) findViewById(R.id.textView1);
         mBackground = (ImageView) findViewById(R.id.imageView1);
         
-        
+        mBall = new CrystallBall(this);
+        // Sensor
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         mAcelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mShakeDector = new ShakeDetector(new OnShakeListener() {

@@ -3,6 +3,16 @@
 
     <string name="app_name">CrystalBall</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string-array name="answers">
+        <item>It\'s certain</item>
+        <item>It\'s doubtful</item>
+        <item>It\'s decidedly so</item>
+        <item>All signs yes</item>
+        <item>The stars are not aligned</item>
+        <item>My reply is no</item>
+        <item>Better not to tell you now</item>
+        <item>Concentrate and ask again</item>
+        <item>Unable to answer now</item>
+    </string-array>
 
 </resources>
