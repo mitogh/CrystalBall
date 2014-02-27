@@ -5,12 +5,16 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
 	private CrystallBall mBall = new CrystallBall();
+	private TextView mAnswerLabel;
+	private Button mgetAnswerButton;
+	private ImageView mBackground;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,26 +22,33 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
         // Declare our variables
-        final TextView answerLabel = (TextView) findViewById(R.id.textView1);
-        Button getAnswerButton = (Button) findViewById(R.id.button1);
+        mAnswerLabel = (TextView) findViewById(R.id.textView1);
+        mgetAnswerButton = (Button) findViewById(R.id.button1);
         
-        getAnswerButton.setOnClickListener(new View.OnClickListener() {
+        mgetAnswerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				animateBackground();
-				answerLabel.setText(mBall.getAnAnswer());
+				mAnswerLabel.setText(mBall.getAnAnswer());
 			}
 		});
     }
     
     private void animateBackground(){
-    	ImageView background = (ImageView) findViewById(R.id.imageView1);
-    	background.setImageResource(R.drawable.ball_animation);
-    	AnimationDrawable animation = (AnimationDrawable) background.getDrawable();
+    	mBackground = (ImageView) findViewById(R.id.imageView1);
+    	mBackground.setImageResource(R.drawable.ball_animation);
+    	AnimationDrawable animation = (AnimationDrawable) mBackground.getDrawable();
     	if(animation.isRunning()){
     		animation.stop();
     	}
     	animation.start();
+    }
+    
+    private void animateAnswer(){
+    	AlphaAnimation fadeInAnswer = new AlphaAnimation(0,1);
+    	fadeInAnswer.setDuration(2000);
+    	fadeInAnswer.setFillAfter(true);
+    	mAnswerLabel.setAnimation(fadeInAnswer);
     }
 
     @Override
