@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">CrystalBall</string>
+    <string name="action_settings">Opciones</string>
+    <string-array name="answers">
+        <item>Es cierto</item>
+        <item>Es dudoso</item>
+        <item>Definitivamente</item>
+        <item>Todo dice que si</item>
+        <item>Las estrellas no estan alineadas</item>
+        <item>Mi respuesta es no</item>
+        <item>Mejor no decirte ahora</item>
+        <item>Concentrate y pregunta de nuevo</item>
+        <item>No puedo responder ahora</item>
+    </string-array>
+
+</resources>
