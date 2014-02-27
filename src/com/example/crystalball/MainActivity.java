@@ -1,10 +1,12 @@
 package com.example.crystalball;
 
 import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
@@ -22,11 +24,21 @@ public class MainActivity extends Activity {
         getAnswerButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				animateBackground();
 				answerLabel.setText(mBall.getAnAnswer());
 			}
 		});
     }
-
+    
+    private void animateBackground(){
+    	ImageView background = (ImageView) findViewById(R.id.imageView1);
+    	background.setImageResource(R.drawable.ball_animation);
+    	AnimationDrawable animation = (AnimationDrawable) background.getDrawable();
+    	if(animation.isRunning()){
+    		animation.stop();
+    	}
+    	animation.start();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
