@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">CrystalBall</string>
     <string name="action_settings">Opciones</string>
     <string-array name="answers">
@@ -14,5 +13,4 @@
         <item>Concentrate y pregunta de nuevo</item>
         <item>No puedo responder ahora</item>
     </string-array>
-
 </resources>
