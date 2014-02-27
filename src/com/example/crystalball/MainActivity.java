@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends Activity {
-	private CrystallBall mball = new CrystallBall();
+	private CrystallBall mBall = new CrystallBall();
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +20,9 @@ public class MainActivity extends Activity {
         Button getAnswerButton = (Button) findViewById(R.id.button1);
         
         getAnswerButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				answerLabel.setText(mball.getAnAnswer());
+				answerLabel.setText(mBall.getAnAnswer());
 			}
 		});
     }
