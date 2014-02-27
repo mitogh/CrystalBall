@@ -2,21 +2,25 @@ package com.example.crystalball;
 
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.crystalball.ShakeDetector.OnShakeListener;
 
 public class MainActivity extends Activity {
 	private CrystallBall mBall = new CrystallBall();
 	private TextView mAnswerLabel;
-	private Button mgetAnswerButton;
 	private ImageView mBackground;
+	private SensorManager mSensorManager;
+	private Sensor mAcelerometer;
+	private ShakeDetector mShakeDector;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,20 +29,32 @@ public class MainActivity extends Activity {
         
         // Declare our variables
         mAnswerLabel = (TextView) findViewById(R.id.textView1);
-        mgetAnswerButton = (Button) findViewById(R.id.button1);
+        mBackground = (ImageView) findViewById(R.id.imageView1);
         
-        mgetAnswerButton.setOnClickListener(new View.OnClickListener() {
+        
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mAcelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        mShakeDector = new ShakeDetector(new OnShakeListener() {
 			@Override
-			public void onClick(View v) {
-				animateBackground();
-				playSound();
-				mAnswerLabel.setText(mBall.getAnAnswer());
+			public void onShake() {
+				handleNewAnswer();
 			}
 		});
     }
     
+    @Override
+    public void onResume(){
+    	super.onResume();
+    	mSensorManager.registerListener(mShakeDector, mAcelerometer, SensorManager.SENSOR_DELAY_UI);
+    }
+    
+    @Override
+    public void onPause(){
+    	super.onPause();
+    	mSensorManager.unregisterListener(mShakeDector);
+    }
+    
     private void animateBackground(){
-    	mBackground = (ImageView) findViewById(R.id.imageView1);
     	mBackground.setImageResource(R.drawable.ball_animation);
     	AnimationDrawable animation = (AnimationDrawable) mBackground.getDrawable();
     	if(animation.isRunning()){
@@ -71,5 +87,11 @@ public class MainActivity extends Activity {
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
+
+	private void handleNewAnswer() {
+		animateBackground();
+		playSound();
+		mAnswerLabel.setText(mBall.getAnAnswer());
+	}
     
 }
