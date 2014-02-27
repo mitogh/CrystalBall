@@ -2,6 +2,8 @@ package com.example.crystalball;
 
 import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -29,6 +31,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				animateBackground();
+				playSound();
 				mAnswerLabel.setText(mBall.getAnAnswer());
 			}
 		});
@@ -49,6 +52,17 @@ public class MainActivity extends Activity {
     	fadeInAnswer.setDuration(2000);
     	fadeInAnswer.setFillAfter(true);
     	mAnswerLabel.setAnimation(fadeInAnswer);
+    }
+    
+    private void playSound(){
+    	MediaPlayer player = MediaPlayer.create(this, R.raw.sound);
+    	player.start();
+    	player.setOnCompletionListener(new OnCompletionListener() {
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				mp.release();
+			}
+		});
     }
 
     @Override
