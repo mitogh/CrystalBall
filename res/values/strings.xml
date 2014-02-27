@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CrystalBall</string>
+    <string name="app_name">Crystal Ball</string>
     <string name="action_settings">Settings</string>
     <string-array name="answers">
         <item>It\'s certain</item>

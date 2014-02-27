@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CrystalBall</string>
+    <string name="app_name">Bola de Cristal</string>
     <string name="action_settings">Opciones</string>
     <string-array name="answers">
         <item>Es cierto</item>
